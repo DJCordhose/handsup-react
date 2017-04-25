@@ -24,18 +24,22 @@ const store = compose(
 
 const auth = new Authorisation()
 
-class HandsUpAppWrapper extends React.Component {
-  render() {
-    return (
-      <HandsUpApp auth={auth} client={client} />
-    )
-  }
-}
+// functional component: https://facebook.github.io/react/docs/components-and-props.html#functional-and-class-components
+const HandsUpAppWrapper = () => <HandsUpApp auth={auth} client={client} />
+// class HandsUpAppWrapper extends React.Component {
+//   render() {
+//     return (
+//       <HandsUpApp auth={auth} client={client} />
+//     )
+//   }
+// }
 
 render(
   <ApolloProvider store={store} client={client}>
     <HashRouter>
       <Route path='/' component={HandsUpAppWrapper} />
+      {/* Even simpler */}
+      {/* <Route path='/' component={() => <HandsUpApp auth={auth} client={client} />} /> */}
     </HashRouter>
   </ApolloProvider>,
   document.getElementById('root')
